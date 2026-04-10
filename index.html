@@ -9,8 +9,6 @@
 <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
 
 <style>
-
-/* BACKGROUND ANIMASI */
 body {
   margin: 0;
   font-family: 'Poppins', sans-serif;
@@ -29,7 +27,6 @@ body {
   100% {background-position: 0% 50%;}
 }
 
-/* CARD */
 .card {
   background: rgba(255,255,255,0.1);
   backdrop-filter: blur(20px);
@@ -38,23 +35,14 @@ body {
   width: 340px;
   color: white;
   box-shadow: 0 0 50px rgba(0,0,0,0.5);
-  animation: fadeIn 1s ease;
 }
 
-@keyframes fadeIn {
-  from {opacity:0; transform: translateY(30px);}
-  to {opacity:1; transform: translateY(0);}
-}
-
-/* LOGO PNG */
 .logo-img {
   display: block;
   margin: auto;
   width: 80px;
-  margin-bottom: 10px;
 }
 
-/* TITLE */
 .title {
   text-align: center;
   font-size: 20px;
@@ -62,7 +50,6 @@ body {
   text-shadow: 0 0 10px #ffd700;
 }
 
-/* TEXT */
 .desc {
   font-size: 12px;
   text-align: center;
@@ -76,7 +63,6 @@ body {
   margin-bottom: 10px;
 }
 
-/* BUTTON LINK */
 .link-btn {
   display: block;
   margin: 5px;
@@ -86,16 +72,9 @@ body {
   color: white;
   text-decoration: none;
   text-align: center;
-  transition: 0.3s;
 }
 
-.link-btn:hover {
-  background: rgba(255,215,0,0.3);
-  transform: scale(1.05);
-}
-
-/* INPUT */
-input, select {
+input {
   width: 95%;
   padding: 10px;
   margin: 5px;
@@ -103,7 +82,6 @@ input, select {
   border: none;
 }
 
-/* BUTTON */
 button {
   width: 100%;
   padding: 12px;
@@ -112,22 +90,14 @@ button {
   border-radius: 12px;
   font-weight: bold;
   margin-top: 10px;
-  transition: 0.3s;
 }
 
-button:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px #ffd700;
-}
-
-/* VOUCHER */
 .voucher {
   margin-top: 15px;
   padding: 15px;
   border-radius: 15px;
   background: linear-gradient(135deg, #111, #333);
   text-align: center;
-  animation: fadeIn 1s ease;
 }
 
 .kode {
@@ -146,56 +116,47 @@ button:hover {
 
 <div class="card">
 
-  <!-- LOGO -->
-  <img src="logo.png" class="logo-img">
+<img src="logo.png" class="logo-img">
 
-  <div class="title">SHINE STUDIO</div>
+<div class="title">SHINE STUDIO</div>
 
-  <p class="desc">Claim voucher GRATIS photobooth</p>
+<p class="desc">Claim voucher GRATIS photobooth</p>
 
-  <div class="terms">
-    <b>Syarat & Ketentuan:</b><br>
-    • Wajib follow IG & TikTok<br>
-    • IG tidak boleh private<br>
-    • Jika private = tidak valid<br>
-    • Voucher hanya 1x<br>
-    • Tidak bisa dibatalkan
-  </div>
+<div class="terms">
+<b>Syarat & Ketentuan:</b><br>
+• Wajib follow IG & TikTok<br>
+• IG tidak boleh private<br>
+• Jika private = tidak valid<br>
+• Voucher hanya 1x<br>
+• Tidak bisa dibatalkan
+</div>
 
-  <a class="link-btn" href="https://www.instagram.com/shine.photostudio_id" target="_blank">📸 Instagram</a>
-  <a class="link-btn" href="https://www.tiktok.com/@shine.photostudio_id" target="_blank">🎵 TikTok</a>
+<a class="link-btn" href="https://www.instagram.com/shine.photostudio_id" target="_blank">📸 Instagram</a>
+<a class="link-btn" href="https://www.tiktok.com/@shine.photostudio_id" target="_blank">🎵 TikTok</a>
 
-  <input type="text" id="nama" placeholder="Nama">
-  <input type="text" id="wa" placeholder="No WhatsApp">
-  <input type="text" id="ig" placeholder="Username IG">
+<input type="text" id="nama" placeholder="Nama">
+<input type="text" id="wa" placeholder="No WhatsApp">
+<input type="text" id="ig" placeholder="Username Instagram">
 
-  <input type="date" id="tanggal">
+<input type="date" id="tanggal">
+<input type="time" id="jam">
 
-  <select id="jam">
-    <option value="">Pilih Jam</option>
-    <option>10:00</option>
-    <option>12:00</option>
-    <option>14:00</option>
-    <option>16:00</option>
-    <option>18:00</option>
-  </select>
+<label style="font-size:12px;">
+<input type="checkbox" id="cek"> Saya sudah memenuhi syarat
+</label>
 
-  <label style="font-size:12px;">
-    <input type="checkbox" id="cek"> Saya sudah memenuhi syarat
-  </label>
+<button onclick="claim()">CLAIM</button>
 
-  <button onclick="claim()">CLAIM</button>
+<div id="voucherBox" class="voucher" style="display:none;">
+<div>🎟️ VOUCHER RESMI</div>
+<div id="kode" class="kode"></div>
+<div id="tanggalText"></div>
+<div id="jamText"></div>
+<div id="qrcode"></div>
+</div>
 
-  <div id="voucherBox" class="voucher" style="display:none;">
-    <div>🎟️ VOUCHER RESMI</div>
-    <div id="kode" class="kode"></div>
-    <div id="tanggalText"></div>
-    <div id="jamText"></div>
-    <div id="qrcode"></div>
-  </div>
-
-  <button id="downloadBtn" style="display:none;" onclick="downloadVoucher()">📥 Download</button>
-  <button id="waBtn" style="display:none;" onclick="kirimWA()">📲 Kirim WA</button>
+<button id="downloadBtn" style="display:none;" onclick="downloadVoucher()">📥 Download</button>
+<button id="waBtn" style="display:none;" onclick="kirimWA()">📲 Kirim WA</button>
 
 </div>
 
@@ -204,57 +165,67 @@ let dataGlobal = {};
 
 function claim() {
 
-  if (!cek.checked) {
-    alert("Harap penuhi syarat!");
-    return;
-  }
+if (!cek.checked) {
+alert("Harap penuhi syarat!");
+return;
+}
 
-  if (!nama.value || !wa.value || !ig.value || !tanggal.value || !jam.value) {
-    alert("Lengkapi data!");
-    return;
-  }
+if (!nama.value || !wa.value || !ig.value || !tanggal.value || !jam.value) {
+alert("Lengkapi data!");
+return;
+}
 
-  let kode = "SHINE-" + Math.floor(1000 + Math.random() * 9000);
+let kode = "SHINE-" + Math.floor(1000 + Math.random() * 9000);
 
-  dataGlobal = {
-    nama: nama.value,
-    wa: wa.value,
-    ig: ig.value,
-    tanggal: tanggal.value,
-    jam: jam.value,
-    kode: kode
-  };
+dataGlobal = {
+nama: nama.value,
+wa: wa.value,
+ig: ig.value,
+tanggal: tanggal.value,
+jam: jam.value,
+kode: kode
+};
 
-  voucherBox.style.display = "block";
-  downloadBtn.style.display = "block";
-  waBtn.style.display = "block";
+voucherBox.style.display = "block";
+downloadBtn.style.display = "block";
+waBtn.style.display = "block";
 
-  kode.innerText = kode;
-  tanggalText.innerText = "Tanggal: " + tanggal.value;
-  jamText.innerText = "Jam: " + jam.value;
+document.getElementById("kode").innerText = kode;
+document.getElementById("tanggalText").innerText = "Tanggal: " + tanggal.value;
+document.getElementById("jamText").innerText = "Jam: " + jam.value;
 
-  QRCode.toCanvas(document.getElementById('qrcode'), kode);
+QRCode.toCanvas(document.getElementById('qrcode'), kode);
 }
 
 function kirimWA() {
-  let pesan = `Halo Shine Studio:
-Nama: ${dataGlobal.nama}
-WA: ${dataGlobal.wa}
-IG: ${dataGlobal.ig}
-Tanggal: ${dataGlobal.tanggal}
-Jam: ${dataGlobal.jam}
-Kode: ${dataGlobal.kode}`;
 
-  window.open(`https://wa.me/6283894036552?text=${encodeURIComponent(pesan)}`);
+let pesan =
+`✨ *SHINE STUDIO VOUCHER* ✨
+
+Halo admin, saya sudah claim voucher photobooth dengan detail berikut:
+
+👤 *Nama:* ${dataGlobal.nama}
+📱 *WhatsApp:* ${dataGlobal.wa}
+📸 *Instagram:* @${dataGlobal.ig}
+
+📅 *Tanggal Booking:* ${dataGlobal.tanggal}
+⏰ *Jam Booking:* ${dataGlobal.jam}
+
+🎟️ *Kode Voucher:* ${dataGlobal.kode}
+
+Mohon konfirmasi booking saya ya 🙏
+Terima kasih`;
+
+window.open(`https://wa.me/6283894036552?text=${encodeURIComponent(pesan)}`);
 }
 
 function downloadVoucher() {
-  html2canvas(document.getElementById("voucherBox")).then(canvas => {
-    let link = document.createElement("a");
-    link.download = "voucher.png";
-    link.href = canvas.toDataURL();
-    link.click();
-  });
+html2canvas(document.getElementById("voucherBox")).then(canvas => {
+let link = document.createElement("a");
+link.download = "voucher.png";
+link.href = canvas.toDataURL();
+link.click();
+});
 }
 </script>
 
