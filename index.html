@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Shine Studio Voucher</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+
+<style>
+body {
+  font-family: sans-serif;
+  background: black;
+  color: white;
+  text-align: center;
+}
+input {
+  width: 90%;
+  padding: 10px;
+  margin: 5px;
+  border-radius: 8px;
+}
+button {
+  padding: 12px;
+  background: cyan;
+  border: none;
+  border-radius: 10px;
+}
+.link-btn {
+  display: block;
+  margin: 5px;
+  padding: 10px;
+  background: #222;
+  color: white;
+  text-decoration: none;
+}
+</style>
+</head>
+
+<body>
+
+<h2>🎟️ Shine Studio Voucher</h2>
+
+<a class="link-btn" href="https://www.instagram.com/shine.photostudio_id" target="_blank">📸 Instagram</a>
+<a class="link-btn" href="https://www.tiktok.com/@shine.photostudio_id" target="_blank">🎵 TikTok</a>
+<a class="link-btn" href="https://maps.app.goo.gl/k62UdUy318geECNfA?g_st=ac" target="_blank">📍 Lokasi</a>
+
+<input type="text" id="nama" placeholder="Nama">
+<input type="text" id="wa" placeholder="No WA">
+
+<input type="text" id="paket" value="Photobooth" readonly>
+<input type="date" id="tanggal">
+
+<br>
+<label><input type="checkbox" id="ig"> Follow IG</label>
+<label><input type="checkbox" id="tt"> Follow TikTok</label>
+
+<br><br>
+<button onclick="claim()">CLAIM</button>
+
+<div id="result"></div>
+<div id="qrcode"></div>
+
+<script>
+function claim() {
+
+  if (!ig.checked || !tt.checked) {
+    alert("Wajib follow dulu!");
+    return;
+  }
+
+  let kode = "SHINE-" + Math.floor(1000 + Math.random() * 9000);
+
+  document.getElementById("result").innerHTML =
+    "✅ Voucher: " + kode;
+
+  QRCode.toCanvas(document.getElementById('qrcode'), kode);
+
+  let pesan = `Halo, saya claim voucher:\nNama: ${nama.value}\nWA: ${wa.value}\nTanggal: ${tanggal.value}\nKode: ${kode}`;
+
+  let url = `https://wa.me/6283894036552?text=${encodeURIComponent(pesan)}`;
+  window.open(url, "_blank");
+}
+</script>
+
+</body>
+</html>
